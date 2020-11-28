@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Dashboard</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" /> 
+     </head>
+
+     <body>
+        <div class="jumbotron"> 
+        <h1>Weather Dashboard</h1> 
+        </div>
+    
+            <!--form for city search--> 
+            <form id = “city-form”> 
+            <label for =  “city-input”> <h2>Search a City:</h2></label>
+            <br>
+            <input type="text" id="city-input"><br>
+            
+            <!-- button trigger AJAX call-->
+            
+            <button id="search-city" type="submit" class="btn btn-primary">Search</button>
+            </form> 
+
+            <!--for my JSON data -->
+            <div id="city-data"></div>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+            <script type="text/javascript"> 
+
+
+            //.on("click") function will start the AJAX call
+            $("#search-city").on("click", function(event) {
+                //stop button from submitting form when clicked
+                event.preventDefault();
+
+                //get text from input box
+                var city = $("#city-input").val();
+
+                //make URL
+                var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=e7b75a6005a289d2d814dd84709cf083";
+                
+                //run AJAX call to API
+                $.ajax({ 
+                url: queryURL, 
+                method: "GET" 
+                }).then(function(response) ); 
+
+                //log queryURL and resulting object
+                console.log(queryURL);
+                console.log(response)
+            });
+
+
+</script>
+</body>
+</html>
