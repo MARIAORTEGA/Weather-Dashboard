@@ -11,48 +11,50 @@
         <div class="jumbotron"> 
         <h1>Weather Dashboard</h1> 
         </div>
-    
-            <!--form for city search--> 
-            <form id = “city-form”> 
-            <label for =  “city-input”> <h2>Search a City:</h2></label>
-            <br>
-            <input type="text" id="city-input"><br>
+
             
-            <!-- button trigger AJAX call-->
+            
+
+
+            <div class="container">
+                <div class="row">
+                  <div class="col-sm">
+                    <!--form for city search--> 
+            <form id = “city-form”> 
+                <!-- button trigger AJAX call-->
             
             <button id="search-city" type="submit" class="btn btn-primary">Search</button>
-            </form> 
+        </form> 
+                <label for =  “city-input”> <h2>Search for a City:</h2></label>
+                <br>
+                <input type="text" id="city-input"><br>
+                  </div>
+                  <div class="col-sm">
+                    <div class="card">
+                        <div class="card-body">
+                         <h5 class="card-title"id="name"></h5>
+                        </div>
+                      </div>
+                    
+                  </div>
+                  
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        example text
+                    </div>
+                </div>
+              </div>
+            
+
+            
 
             <!--for my JSON data -->
             <div id="city-data"></div>
-
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
-            <script type="text/javascript"> 
+<script src="script.js"></script>
 
-
-            //.on("click") function will start the AJAX call
-            $("#search-city").on("click", function(event) {
-                //stop button from submitting form when clicked
-                event.preventDefault();
-
-                //get text from input box
-                var city = $("#city-input").val();
-
-                //make URL
-                var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=e7b75a6005a289d2d814dd84709cf083";
-                
-                //run AJAX call to API
-                $.ajax({ 
-                url: queryURL, 
-                method: "GET" 
-                }).then(function(response) ); 
-
-                //log queryURL and resulting object
-                console.log(queryURL);
-                console.log(response)
-            });
-
-
-</script>
 </body>
+
 </html>
+            
