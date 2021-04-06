@@ -1,73 +1,82 @@
-// GIVEN a weather dashboard with form inputs WHEN I search for a city  
-// THEN I am presented with current and future conditions for that city and that city is added to the search history  
+//.on("click") function will start the AJAX call
+$("#search-city").on("click", function (event) {
+  //option to hit enter instead of clicking button
+  event.preventDefault();
 
+  //get text from input box
+  var city = $("#city-input").val();
 
-// WHEN I view current weather conditions for that city  
-// THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index 
+  //make URL
+  var queryURL =
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    city +
+    "&appid=e7b75a6005a289d2d814dd84709cf083";
 
+  //run AJAX call to API
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+  }).then(function (response) {
+    $("#city-data").text(JSON.stringify(response));
+    $("#name").text(response.name);
+    $("#temp").text(response.main.temp);
+    $("#humidity").text(response.main.humidity);
+    $("#wind").text(response.wind);
+    $("#uvindex").text(response.coord.lon.lat);
+    //log queryURL and resulting object
+    console.log(queryURL);
+    console.log(response);
 
-// WHEN I view the UV index  
-// THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe  
+    //for the date and icon
 
+    var currentDay = $("#dateIcon");
 
-// WHEN I view future weather conditions for that city  
-// THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity  
+    //the current day is displayed at the top of the calendar
+    function displayToday() {
+      var today = moment().format("dddd, MMMM Do YYYY");
+      currentDay.text(today);
+    }
 
- 
-// WHEN I click on a city in the search history  
-// THEN I am again presented with current and future conditions for that city  
+    setInterval(displayToday);
 
- 
-// WHEN I open the weather dashboard  
-// THEN I am presented with the last searched city forecast 
+    var fiveDay =
+      "https://api.openweathermap.org/data/2.5/forecast?q=" +
+      city +
+      "&appid=e7b75a6005a289d2d814dd84709cf083";
 
-            //.on("click") function will start the AJAX call
-            $("#search-city").on("click", function(event) {
-                //option to hit enter instead of clicking button
-                event.preventDefault();
+    $.ajax({
+      url: fiveDay,
+      method: "GET",
+    }).then(function (response) {
+      $("#day1").text(response);
+      $("#day2").text(response);
+      $("#day3").text(response);
+      $("#day4").text(response);
+      $("#day5").text(response);
+    });
 
-                //get text from input box
-                var city = $("#city-input").val();
+    // //div to hold city weather
+    // var cityDiv = $("<div class='city'>");
+    // //store city name
+    // var name = response.city.name;
+    // //display city name
+    // var nAme = $("<p>").text("City Name: " + name);
+    // //display city name
+    // cityDiv.append(nAme);
 
-                //make URL
-                var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=e7b75a6005a289d2d814dd84709cf083";
-                
-                //run AJAX call to API
-                $.ajax({ 
-                url: queryURL, 
-                method: "GET" 
-                }).then(function(response) {
-                $("#city-data").text(JSON.stringify(response)); 
-                $("#name").text(response.name)
-                //log queryURL and resulting object
-                console.log(queryURL);
-                console.log(response);
-                
-                
-            //div to hold city weather
-            // var cityDiv = $("<div class='city'>");
-            // //store city name
-            // var name = response.city.name;
-            // //display city name
-            // var nAme = $("<p>").text("City Name: " + name);
-            // //display city name
-            // cityDiv.append(nAme);
-                                                                                
-            //     console.log(nAme);
+    //     console.log(nAme);
 
-        //making html to hold city info
-            // var cityName = $("<h2>").text(response.name);  
-            // var weatherIcon = $("<icon>").html("img src=",response.icon);
-            // var date = $( )
-        
-            // //var date = $(.datepicker.formatDate('yy/mm/dd', new Date());
-            // //var date = $(mm + '/' + dd + '/' + yyyy);
-    
+    // making html to hold city info
+    // var cityName = $("<h2>").text(response.name);
+    // var weatherIcon = $("<icon>").html("img src=",response.icon);
+    // var date = $( )
 
-            // $("#city-data").empty();
-            // $("#city-data").append(cityName, date, weatherIcon);
+    // //var date = $(.datepicker.formatDate('yy/mm/dd', new Date());
+    // //var date = $(mm + '/' + dd + '/' + yyyy);
 
-            // console.log(date);
+    // $("#city-data").empty();
+    // $("#city-data").append(cityName, date, weatherIcon);
 
-        });
-               });
+    // console.log(date);
+  });
+});

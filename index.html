@@ -2,56 +2,76 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Weather Dashboard</title>
+    <title>WEATHER DASHBOARD</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" /> 
-     </head>
+
+  </head>
 
      <body>
         <div class="jumbotron"> 
-        <h1>Weather Dashboard</h1> 
+        <h1>WEATHER DASHBOARD</h1> 
         </div>
-
-            
-            
-
-
             <div class="container">
                 <div class="row">
                   <div class="col-sm">
                     <!--form for city search--> 
             <form id = “city-form”> 
                 <!-- button trigger AJAX call-->
-            
+      
             <button id="search-city" type="submit" class="btn btn-primary">Search</button>
         </form> 
-                <label for =  “city-input”> <h2>Search for a City:</h2></label>
+                <label for = “city-input”> <h2>Search for a City:</h2></label>
                 <br>
                 <input type="text" id="city-input"><br>
                   </div>
                   <div class="col-sm">
                     <div class="card">
                         <div class="card-body">
-                         <h5 class="card-title"id="name"></h5>
+                         <h5 class="card-title"id="name">City:</h5>
+                         <h5 class="card-title"id="temp">Temperature:</h5>
+                         <h5 class="card-title"id="humidity">Humidity:</h5>
+                         <h5 class="card-title"id="wind">Wind:</h5>
+                         <h5 class="card-title"id="uvindex">UV Index:</h5>
                         </div>
                       </div>
-                    
+                    <!---->
+                  
+                 
+                        <div class="col-sm">
+                          <div class="card">
+                              <div class="card-body">
+                               <h5 class="card-title"id="day1"></h5>
+                               <h5 class="card-title"id="day2"></h5>
+                               <h5 class="card-title"id="day3"></h5>
+                               <h5 class="card-title"id="day4"></h5>
+                               <h5 class="card-title"id="day5"></h5>
+                              </div>
+                            </div>
+                         
+
+                   
                   </div>
                   
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        example text
+                        
                     </div>
+                    <!--added for date and icon-->
+                    <div id= "dateIcon" class="row">
+                      <div class="col-sm">
+                          Date:
+                      </div>
                 </div>
               </div>
-            
-
-            
-
             <!--for my JSON data -->
-            <div id="city-data"></div>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+            <div id="city-data">
+            
+            </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+<script src=https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js></script> 
 <script src="script.js"></script>
 
 </body>
